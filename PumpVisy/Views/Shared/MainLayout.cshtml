@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+  
+    <title>@ViewBag.Title</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    @Scripts.Render("~/bundles/jquery")
+
+
+	@Styles.Render("~/bundles/css")
+	
+
+	
+    @RenderSection("Css",false)
+	
+	
+
+	<!--[if lt IE 9]>
+	  <script src='@Url.Content("~/js/html5shiv.js")'></script>
+	  <script src='@Url.Content("~/js/respond.js")'></script>
+	<![endif]--> 
+    <!--[if IE 8]>
+        <script type="text/javascript">
+            window.location.href = '@Url.Content("~/ie8page.html")';
+        </script>
+    <![endif]-->
+</head>
+<body>
+    
+        @RenderBody()
+    
+    @RenderSection("Scripts", false)
+    
+    <div id="backgrounding"></div>
+</body>
+</html>

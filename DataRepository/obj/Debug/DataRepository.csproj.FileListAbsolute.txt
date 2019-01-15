@@ -1,0 +1,9 @@
+E:\dev\vs\PumpingSql\DataRepository\bin\Debug\DataRepository.dll
+E:\dev\vs\PumpingSql\DataRepository\bin\Debug\DataRepository.pdb
+E:\dev\vs\PumpingSql\DataRepository\bin\Debug\DapperBase.dll
+E:\dev\vs\PumpingSql\DataRepository\bin\Debug\Dapper.dll
+E:\dev\vs\PumpingSql\DataRepository\bin\Debug\DapperBase.pdb
+E:\dev\vs\PumpingSql\DataRepository\bin\Debug\Dapper.xml
+E:\dev\vs\PumpingSql\DataRepository\obj\Debug\DataRepository.csprojResolveAssemblyReference.cache
+E:\dev\vs\PumpingSql\DataRepository\obj\Debug\DataRepository.dll
+E:\dev\vs\PumpingSql\DataRepository\obj\Debug\DataRepository.pdb
