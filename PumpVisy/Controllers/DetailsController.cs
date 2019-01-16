@@ -72,7 +72,7 @@ namespace PumpVisy.Controllers
             catch (Exception ex)
             {
 
-                loger.LogToFile(Utilite.CreateDefaultLogMessage(User.Identity.Name, "error", ex));
+                loger.LogToFile(Utilite.CreateDefaultLogMessage(User.Identity.Name, "error", ex.Message + " " + ex.StackTrace));
                                
             }
             return Json(jsonData, JsonRequestBehavior.AllowGet);

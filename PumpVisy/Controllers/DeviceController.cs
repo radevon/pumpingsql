@@ -16,8 +16,14 @@ namespace PumpVisy.Controllers
         
         // GET: /Device/
 
-        private VisualSqlRepository repo = new VisualSqlRepository(ConfigurationManager.ConnectionStrings["Data"].ConnectionString);
-        private Logger loger = new Logger(ConfigurationManager.AppSettings["logFilePath"]);
+        private VisualSqlRepository repo;
+        private Logger loger;
+
+        public DeviceController()
+        {
+            repo = new VisualSqlRepository(ConfigurationManager.ConnectionStrings["Data"].ConnectionString);
+            loger = new Logger(ConfigurationManager.AppSettings["logFilePath"]);
+        }
 
         public JsonResult AllMarkers()
         {
@@ -25,20 +31,11 @@ namespace PumpVisy.Controllers
             try
             {
                 devices = repo.GetAllObjects().ToList();
-
                 
             }
             catch (Exception ex)
             {
-                LogMessage message = new LogMessage()
-                {
-                    MessageDate = DateTime.Now,
-                    UserName = User.Identity.Name,
-                    MessageType = "error",
-                    MessageText = ex.Message + ex.StackTrace
-                };
-                loger.LogToFile(message);
-                
+                loger.LogToFile(Utilite.CreateDefaultLogMessage(User.Identity.Name, "error", ex.Message + " " + ex.StackTrace));                
             }
             
             return Json(devices, JsonRequestBehavior.AllowGet);
@@ -54,32 +51,12 @@ namespace PumpVisy.Controllers
                 // логирование
                 if (insertedId > 0)
                 {
-                    //LogMessage message = new LogMessage()
-                    //{
-                    //    Id = 1,
-                    //    UserName = User.Identity.Name,
-                    //    MessageDate = DateTime.Now,
-                    //    MessageType = "insert",
-                    //    MessageText = new JavaScriptSerializer().Serialize(marker)
-                    //};
-
-                    //loger.LogToFile(message);
-                    //loger.LogToDatabase(message);
+                    loger.LogToFile(Utilite.CreateDefaultLogMessage(User.Identity.Name, "insert", new JavaScriptSerializer().Serialize(marker)));
                 }
             }
             catch (Exception ex)
             {
-                //LogMessage message = new LogMessage()
-                //{
-                //    Id = -1,
-                //    UserName = User.Identity.Name,
-                //    MessageDate = DateTime.Now,
-                //    MessageType = "error",
-                //    MessageText = ex.Message + ex.StackTrace
-                //};
-
-                //loger.LogToFile(message);
-                //loger.LogToDatabase(message);
+                loger.LogToFile(Utilite.CreateDefaultLogMessage(User.Identity.Name, "error", ex.Message + " " + ex.StackTrace));
                 insertedId = -1;
             }
             
@@ -100,17 +77,7 @@ namespace PumpVisy.Controllers
             }
             catch (Exception ex)
             {
-                //LogMessage message = new LogMessage()
-                //{
-                //    Id = -1,
-                //    MessageDate = DateTime.Now,
-                //    UserName = User.Identity.Name,
-                //    MessageType = "error",
-                //    MessageText = ex.Message + ex.StackTrace
-                //};
-
-                //loger.LogToFile(message);
-                //loger.LogToDatabase(message);
+                loger.LogToFile(Utilite.CreateDefaultLogMessage(User.Identity.Name, "error", ex.Message + " " + ex.StackTrace));
                 return HttpNotFound();
             }
             
@@ -126,32 +93,13 @@ namespace PumpVisy.Controllers
                 updateCount = repo.UpdateObject(marker);
                 if (updateCount > 0)
                 {
-                    //LogMessage message = new LogMessage()
-                    //{
-                    //    Id = 1,
-                    //    UserName = User.Identity.Name,
-                    //    MessageDate = DateTime.Now,
-                    //    MessageType = "update",
-                    //    MessageText = "old values: " + new JavaScriptSerializer().Serialize(old) + "; new values: " + new JavaScriptSerializer().Serialize(marker)
-                    //};
-
-                    //loger.LogToFile(message);
-                    //loger.LogToDatabase(message);
+                    loger.LogToFile(Utilite.CreateDefaultLogMessage(User.Identity.Name, "update", "old values: " + new JavaScriptSerializer().Serialize(old) + "; new values: " + new JavaScriptSerializer().Serialize(marker)));
+                    
                 }
             }
             catch (Exception ex)
             {
-                //LogMessage message = new LogMessage()
-                //{
-                //    Id = -1,
-                //    MessageDate = DateTime.Now,
-                //    UserName = User.Identity.Name,
-                //    MessageType = "error",
-                //    MessageText = ex.Message + ex.StackTrace
-                //};
-
-                //loger.LogToFile(message);
-                //loger.LogToDatabase(message);
+                loger.LogToFile(Utilite.CreateDefaultLogMessage(User.Identity.Name, "error", ex.Message + " " + ex.StackTrace));
                 updateCount = -1;
             }
             return Json(updateCount);
@@ -168,32 +116,14 @@ namespace PumpVisy.Controllers
                 deleteCount = repo.DeleteObjectById(ObjectId);
                 if (deleteCount > 0)
                 {
-                    //LogMessage message = new LogMessage()
-                    //{
-                    //    Id = 1,
-                    //    UserName = User.Identity.Name,
-                    //    MessageDate = DateTime.Now,
-                    //    MessageType = "delete",
-                    //    MessageText = new JavaScriptSerializer().Serialize(deleted)
-                    //};
-                    //loger.LogToFile(message);
-                    //loger.LogToDatabase(message);
+                    loger.LogToFile(Utilite.CreateDefaultLogMessage(User.Identity.Name, "delete", new JavaScriptSerializer().Serialize(deleted)));
+                    
                 }
                 
             }
             catch (Exception ex)
             {
-                //LogMessage message = new LogMessage()
-                //{
-                //    Id = -1,
-                //    MessageDate = DateTime.Now,
-                //    UserName = User.Identity.Name,
-                //    MessageType = "error",
-                //    MessageText = ex.Message + ex.StackTrace
-                //};
-
-                //loger.LogToFile(message);
-                //loger.LogToDatabase(message);
+                loger.LogToFile(Utilite.CreateDefaultLogMessage(User.Identity.Name, "error", ex.Message + " " + ex.StackTrace));
                 deleteCount = -1;
             }
             return Json(deleteCount);

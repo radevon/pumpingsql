@@ -8,14 +8,14 @@ namespace PumpVisy
 {
     public static class Utilite
     {
-        public static LogMessage CreateDefaultLogMessage(string UserName, string MessageType, Exception ex)
+        public static LogMessage CreateDefaultLogMessage(string UserName, string MessageType, string MessageText)
         {
             LogMessage message = new LogMessage()
             {
                 MessageDate = DateTime.Now,
                 UserName = UserName,
                 MessageType = MessageType,
-                MessageText = ex.Message+" "+ex.StackTrace
+                MessageText = MessageText
             };
             return message;
         }

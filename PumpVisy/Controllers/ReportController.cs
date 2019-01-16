@@ -47,26 +47,38 @@ namespace PumpVisy.Controllers
             {
                 return View("ReportIndex", rc);
             }
+
             List<ByHourStat> values = new List<ByHourStat>();
 
-            Db_objects m = repo_.GetObjectByIdentity(rc.Identity);
-            if (m != null)
+            try
             {
-                ViewBag.ObjectName = m.Address;
-            }
-            else
-            {
-                ViewBag.ObjectName = "-";
-            }
 
-            if (ReportType.IndexOf("Месячный", StringComparison.OrdinalIgnoreCase) >= 0)
+
+                Db_objects m = repo_.GetObjectByIdentity(rc.Identity);
+                if (m != null)
+                {
+                    ViewBag.ObjectName = m.Address;
+                }
+                else
+                {
+                    ViewBag.ObjectName = "-";
+                }
+
+                if (ReportType.IndexOf("Месячный", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    values = repo_.GetStatByDays(rc.DateParam, rc.Identity).ToList();
+                    return View("StatByMonth", values);
+                }
+                else
+                {
+                    values = repo_.GetStatByHour(rc.DateParam, rc.Identity).ToList();
+                    return View("StatByDay", values);
+                }
+            }
+            catch (Exception ex)
             {
-                values = repo_.GetStatByDays(rc.DateParam, rc.Identity).ToList();
-                return View("StatByMonth", values);
-            }else
-            {
-                values = repo_.GetStatByHour(rc.DateParam, rc.Identity).ToList();
-                return View("StatByDay", values);
+                loger.LogToFile(Utilite.CreateDefaultLogMessage(User.Identity.Name, "error", ex.Message + " " + ex.StackTrace));
+                return Content("При формировании отчета возникли ошибки. обратитесь к разработчику.");
             }
 
             
