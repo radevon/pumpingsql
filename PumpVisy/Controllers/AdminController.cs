@@ -18,8 +18,7 @@ namespace PumpVisy.Controllers
     public class AdminController : Controller
     {
 
-        
-       
+               
       
     }
 
