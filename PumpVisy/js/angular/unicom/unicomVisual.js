@@ -15,7 +15,7 @@
         .scale(x)
         .orient("bottom")
         .ticks(d3.time.minute, 5)
-        .tickFormat(d3.time.format("%X"));
+        .tickFormat(d3.time.format("%H:%M"));
         
 
     var yAxis = d3.svg.axis()
