@@ -34,3 +34,4 @@ E:\dev\vs\PumpingSql\PumpVisy\bin\WebMatrix.Data.dll
 E:\dev\vs\PumpingSql\PumpVisy\bin\WebMatrix.WebData.dll
 E:\dev\vs\PumpingSql\PumpVisy\bin\WebMatrix.Data.xml
 E:\dev\vs\PumpingSql\PumpVisy\bin\WebMatrix.WebData.xml
+E:\dev\vs\PumpingSql\PumpVisy\bin\Microsoft.Web.Helpers.dll

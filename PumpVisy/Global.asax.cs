@@ -19,7 +19,7 @@ namespace PumpVisy
             BundleTable.EnableOptimizations = true;
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            WebSecurity.InitializeDatabaseConnection("Auth", "users", "UserId", "UserName", false);
+            //WebSecurity.InitializeDatabaseConnection("Auth", "users", "UserId", "UserName", false);
 
         }
     }

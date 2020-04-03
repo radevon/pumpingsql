@@ -13,18 +13,19 @@ namespace PumpVisy
 
         public List<PumpParameters> DataTable { get; set; }
 
-        public List<DataForVisual> DataGraph { get; set; }
+       
+        public int TimeDiff
+        {
+             get
+            {
+                return (int)Math.Floor((EndDate - StartDate).TotalHours);
+            }
+        }
 
         public EWdata()
         {
             DataTable = new List<PumpParameters>();
-            DataGraph = new List<DataForVisual>();
         }
     }
 
-    public class DataForVisual
-    {
-        public DateTime RecvDate { get; set; }
-        public double? Value { get; set; }
-    }
 }

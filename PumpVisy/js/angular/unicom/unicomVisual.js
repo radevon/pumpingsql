@@ -14,7 +14,7 @@
     var xAxis = d3.svg.axis()
         .scale(x)
         .orient("bottom")
-        .ticks(d3.time.minute, 5)
+        .ticks(d3.time.minute, 15)
         .tickFormat(d3.time.format("%H:%M"));
         
 
@@ -63,7 +63,8 @@ unicom.controller('UnicomController', function UnicomController($scope,$interval
         startDate: new Date(),
         endDate: new Date(),
         data: [],
-        dataGraph: []
+        dataGraph: [],
+        timeDiff:0
     };
 
     $scope.graphParam = 'Presure';
@@ -102,6 +103,7 @@ unicom.controller('UnicomController', function UnicomController($scope,$interval
         }
         
     };
+
 
     // удельный расход электроэнергии на основе показаний эл и воды за посл 20 мин
     $scope.YdelEnergy = function () {
@@ -167,7 +169,8 @@ unicom.controller('UnicomController', function UnicomController($scope,$interval
             return 0;
         }
     };
-    
+
+       
     // последние показания
     $scope.lastData = function() {
         if ($scope.EWdata.data.length > 0) {
@@ -203,21 +206,61 @@ unicom.controller('UnicomController', function UnicomController($scope,$interval
         $scope.loadData(identity);
         
        
-        $interval(function () { $scope.loadData(identity); }, 20000);
+        $interval(function () { $scope.loadData(identity); }, 60000);
               
     };
 
     $scope.isShowAlert=function() {
         return $scope.lastData().RecvDate != null && $scope.lastData().Alarm != null && $scope.lastData().Alarm>0;
     }
+
+    // обновить график
+    $scope.updateGraph = function() {
+        $scope.EWdata.dataGraph = [];
+        $scope.EWdata.data.map(function (e, i) {
+            $scope.EWdata.dataGraph.push({
+                RecvDate: e.RecvDate,
+                Value: +e[$scope.graphParam]
+            });
+        });
+
+
+        x.domain([$scope.EWdata.startDate, $scope.EWdata.endDate]);
+        y.domain([d3.min($scope.EWdata.dataGraph, function (d) { return d.Value; }) * 0.95, d3.max($scope.EWdata.dataGraph, function (d) { return d.Value; }) * 1.05]);  // d3.extent($scope.EWdata.dataGraph, function (d) { return d.Value; }));
+
+        x_axis.call(xAxis);
+        y_axis.call(yAxis);
+
+
+
+
+        ln.datum($scope.EWdata.dataGraph)
+           .attr("d", line);
+
+        var dots = svg.selectAll("circle.dot").data($scope.EWdata.dataGraph);
+
+
+
+        dots.enter()
+            .append("circle")
+            .attr("class", "dot")
+            .attr("cx", function (d) { return x(d.RecvDate); })
+            .attr("cy", function (d) { return y(d.Value); })
+            .attr("r", 0.8);
+
+        dots.attr("cx", function (d) { return x(d.RecvDate); })
+            .attr("cy", function (d) { return y(d.Value); });
+
+        dots.exit().remove();
+    }
     // запрос данных
     $scope.loadData = function (identity) {
         showLoading(true);
-        requests.getLastData(identity, $scope.graphParam)
+        requests.getLastData(identity)
             .success(function (data) {
                 $scope.EWdata.startDate = new Date(parseInt(data.StartDate.substr(6)));
                 $scope.EWdata.endDate = new Date(parseInt(data.EndDate.substr(6)));
-                
+                $scope.EWdata.timeDiff = parseInt(data.TimeDiff);
                 $scope.EWdata.data = [];
                 data.DataTable.map(function(e, i) {
                     $scope.EWdata.data.push({
@@ -238,43 +281,8 @@ unicom.controller('UnicomController', function UnicomController($scope,$interval
                         Presure:e.Presure
                     });
                 });
-                    $scope.EWdata.dataGraph = [];
-                    data.DataGraph.map(function(e, i) {
-                        $scope.EWdata.dataGraph.push({
-                            RecvDate: new Date(parseInt(e.RecvDate.substr(6))),
-                            Value: e.Value
-                        });
-                        });
-                   
 
-                    x.domain([$scope.EWdata.startDate, $scope.EWdata.endDate]);
-                    y.domain([d3.min($scope.EWdata.dataGraph,function(d){return d.Value;})*0.95,d3.max($scope.EWdata.dataGraph,function(d){return d.Value;})*1.05]);  // d3.extent($scope.EWdata.dataGraph, function (d) { return d.Value; }));
-                    
-                    x_axis.call(xAxis);
-                    y_axis.call(yAxis);
-                    
-                                           
-                    
-
-                    ln.datum($scope.EWdata.dataGraph)
-                       .attr("d", line);
-                    
-                    var dots = svg.selectAll("circle.dot").data($scope.EWdata.dataGraph);
-
-                    
-
-                    dots.enter()
-                        .append("circle")
-                        .attr("class", "dot")
-                        .attr("cx", function(d) { return x(d.RecvDate); })
-                        .attr("cy", function(d) { return y(d.Value); })
-                        .attr("r", 0.8);
-                    
-                    dots.attr("cx", function (d) { return x(d.RecvDate); })
-                        .attr("cy", function (d) { return y(d.Value); });
-                        
-                    dots.exit().remove();
-
+                $scope.updateGraph();
                 
                 
             }).error(function (error) { console.log(error); })
@@ -296,13 +304,13 @@ unicom.controller('UnicomController', function UnicomController($scope,$interval
 
 
 unicom.service("requests", function ($http) {
-    this.getLastData = function(identity,type) {
+    this.getLastData = function(identity) {
         return $http({
             url: '../GetDataBySmallPeriod',
             method: 'GET',
             dataType: 'json',
             cache: false,
-            params: { 'identity': identity, 'parameterGraph': type }
+            params: { 'identity': identity }
         });
     };
 });

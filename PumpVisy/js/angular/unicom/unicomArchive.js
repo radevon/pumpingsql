@@ -96,7 +96,7 @@ unicom.service("requests", function ($http) {
             method: 'GET',
             dataType: 'json',
             cache: false,
-            params: { 'identity': identity, 'parameterGraph': 'Amperage1', 'start_': date_start.toISOString() }
+            params: { 'identity': identity, 'start_': date_start.toISOString() }
         });
     };
 });

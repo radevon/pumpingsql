@@ -288,8 +288,8 @@
     </div>
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12 text-center">
-            <div id="warning_msg" data-ng-show="loseDataTime()>60">
-    Внимание! С момента получения последних данных прошло больше минуты<br/> Вероятно последние значения не актуальны...
+            <div id="warning_msg" data-ng-show="loseDataTime()>300">
+    Внимание! С момента получения последних данных прошло больше 5 мин<br/> Вероятно последние значения не актуальны...
             </div>
         </div>
     </div>
@@ -300,7 +300,7 @@
             </h2>
         </div>
         <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
-            <select data-ng-model="graphParam" class="form-control">
+            <select data-ng-model="graphParam" class="form-control" data-ng-change="updateGraph()">
                 <option value="Amperage1" class="text-primary">Ток фаза 1</option>
                 <option value="Amperage2" class="text-primary">Ток фаза 2</option>
                 <option value="Amperage3" class="text-primary">Ток фаза 3</option>
@@ -308,7 +308,7 @@
                 <option value="Voltage2" class="text-warning">Напряжение фаза 2</option>
                 <option value="Voltage3" class="text-warning">Напряжение фаза 3</option>
                 <option value="CurrentElectricPower" class="text-danger">Мощность</option>
-                
+
                 <option value="Presure" class="text-primary">Давление</option>
             </select>
         </div>
@@ -331,7 +331,7 @@
     <div class="row">
         <div class="col-lg-10 col-md-9 col-sm-8 col-xs-8">
             <h2 class="text-center text-muted">
-                Значения за последние 30 мин
+                Значения за последние {{EWdata.timeDiff}} часов
             </h2>
             
         </div>

@@ -39,34 +39,33 @@ namespace PumpVisy.Controllers
 
         
 
-        public JsonResult GetDataBySmallPeriod(string identity, string parameterGraph)
+        public JsonResult GetDataBySmallPeriod(string identity)
         {
+            DateTime start=DateTime.Now;
             DateTime end = DateTime.Now;
 
-            double interval = 1; // 1 час для построения графика
-            int interval_table = 30;  // 30 мин для данных
+            double interval; 
+            
 
             EWdata jsonData = new EWdata();
             
             jsonData.EndDate = end;
-
-            DateTime start = end.AddHours(-interval);
+                       
             jsonData.StartDate = start;
             try
             {
-                interval = Convert.ToDouble(ConfigurationManager.AppSettings["DataVisualInterval"], CultureInfo.GetCultureInfo("en-US").NumberFormat);
-                interval_table = Convert.ToInt32(ConfigurationManager.AppSettings["DataTableInterval"], CultureInfo.GetCultureInfo("en-US").NumberFormat);
-
+                if (!Double.TryParse(ConfigurationManager.AppSettings["dataInterval"], NumberStyles.Any, CultureInfo.GetCultureInfo("en-US").NumberFormat, out interval))
+                {
+                    interval = 8; // по умолчанию 8 часов
+                }                
                 start = end.AddHours(-interval);
                 jsonData.StartDate = start;
             
             IEnumerable<PumpParameters> data = repo_.GetPumpParamsByIdentityAndDate(identity, start, end);
             
             IEnumerable<PumpParameters> temp=data.OrderByDescending(x => x.RecvDate);
-            jsonData.DataTable = temp.Where(x=>x.RecvDate>end.AddMinutes(-interval_table)).ToList();
-            PropertyInfo infoprop = (typeof(PumpParameters)).GetProperty(parameterGraph);
-
-            jsonData.DataGraph = temp.Select(x => new DataForVisual() { RecvDate = x.RecvDate, Value = infoprop.GetValue(x) == null ? 0 : (double)infoprop.GetValue(x) }).ToList();
+            jsonData.DataTable = temp.ToList();
+                                   
 
             }
             catch (Exception ex)

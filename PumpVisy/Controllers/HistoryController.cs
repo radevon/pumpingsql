@@ -36,23 +36,23 @@ namespace PumpVisy.Controllers
         }
 
 
-        public JsonResult GetByPeriod(string identity, DateTime start_, string parameterGraph = "Amperage1")
+        public JsonResult GetByPeriod(string identity, DateTime start_)
         {
-            DateTime end=start_.AddHours(1);
-            
+            DateTime start = new DateTime(start_.Year, start_.Month, start_.Day,0,0,0);
+            DateTime end = new DateTime(start_.Year, start_.Month, start_.Day, 23, 59, 59);
+                        
             EWdata jsonData = new EWdata();
-            jsonData.StartDate = start_;
+            jsonData.StartDate = start;
             jsonData.EndDate = end;
 
             try
             {
 
 
-                IEnumerable<PumpParameters> data = repo_.GetPumpParamsByIdentityAndDate(identity, start_, end);
+                IEnumerable<PumpParameters> data = repo_.GetPumpParamsByIdentityAndDate(identity, start, end);
                 IEnumerable<PumpParameters> temp = data.OrderBy(x => x.RecvDate);
                 jsonData.DataTable = temp.ToList();
-                PropertyInfo infoprop = (typeof(PumpParameters)).GetProperty(parameterGraph);
-                jsonData.DataGraph = temp.Select(x => new DataForVisual() { RecvDate = x.RecvDate, Value = (double?)infoprop.GetValue(x) }).ToList();
+               
             }
             catch (Exception ex)
             {

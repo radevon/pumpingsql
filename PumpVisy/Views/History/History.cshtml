@@ -142,14 +142,13 @@
             }
 
             $('#datetimepicker').datetimepicker({
-                step: 60,
                 inline: true,
                 value: new Date(),
                 lang: 'ru',
-                maxDate: (new Date()).setHours(23),
                 onChangeDateTime: sendRequest,
-                dayOfWeekStart: 1
-
+                dayOfWeekStart: 1,
+                format: 'd.m.Y',
+                timepicker: false
             });
 
             
