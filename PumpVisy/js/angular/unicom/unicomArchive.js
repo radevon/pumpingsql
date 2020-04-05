@@ -31,9 +31,9 @@ unicom.controller('UnicomController', function UnicomController($scope, $interva
     // время в минутах
     $scope.intervalData = function () {
         if ($scope.EWdata.data.length > 0) {
-            return ($scope.EWdata.data[$scope.EWdata.data.length - 1].RecvDate-$scope.EWdata.data[0].RecvDate) / 1000 / 60;
+            return moment.duration($scope.EWdata.data[0].RecvDate - $scope.EWdata.data[$scope.EWdata.data.length - 1].RecvDate).humanize();
         } else {
-            return 0;
+            return "0";
         }
     };
 

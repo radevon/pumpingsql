@@ -1,0 +1,4 @@
+D:\code\.NET\Pumpingsql\PumpingModule\bin\Debug\PumpingModule.dll
+D:\code\.NET\Pumpingsql\PumpingModule\bin\Debug\PumpingModule.pdb
+D:\code\.NET\Pumpingsql\PumpingModule\obj\Debug\PumpingModule.dll
+D:\code\.NET\Pumpingsql\PumpingModule\obj\Debug\PumpingModule.pdb

@@ -117,7 +117,7 @@ app.controller('MarkerController',function MarkerController($scope,$http,dataSer
 
 			if($scope.selectedMarker!=null) {
 
-			    window.location.href = '././Details/ViewParameters/' + $scope.selectedMarker.ObjectId;
+			    window.location.href = baseurl+'Details/ViewParameters/' + $scope.selectedMarker.ObjectId;
 
 			}
 			

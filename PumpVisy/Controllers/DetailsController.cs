@@ -33,6 +33,10 @@ namespace PumpVisy.Controllers
             {
                 return HttpNotFound();
             }
+
+            //ExternalRepository ins = new ExternalRepository(ConfigurationManager.ConnectionStrings["Data"].ConnectionString);
+
+            //MethodResult res = ins.InsertNewRow(DateTime.Now, "123", new Random(DateTime.Now.Second).NextDouble() * 100, new Random(DateTime.Now.Second).NextDouble() * 10, new Random(DateTime.Now.Second).NextDouble() * 10, new Random(DateTime.Now.Second).NextDouble() * 10, new Random(DateTime.Now.Second).NextDouble() * 200, new Random(DateTime.Now.Second).NextDouble() * 200, new Random(DateTime.Now.Second).NextDouble() * 200, new Random(DateTime.Now.Second).NextDouble() * 100, new Random(DateTime.Now.Second).NextDouble() * 1100,"",null,0);
             
             return View(obj);
         }

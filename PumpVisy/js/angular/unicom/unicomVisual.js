@@ -67,7 +67,7 @@ unicom.controller('UnicomController', function UnicomController($scope,$interval
         timeDiff:0
     };
 
-    $scope.graphParam = 'Presure';
+    $scope.graphParam = 'CurrentElectricPower';
 
     $scope.updatedTime = null;
 
@@ -161,12 +161,12 @@ unicom.controller('UnicomController', function UnicomController($scope,$interval
         }
     };
 
-    // время в минутах
+    // время
     $scope.intervalData = function() {
         if ($scope.EWdata.data.length > 0) {
-            return ($scope.EWdata.data[0].RecvDate - $scope.EWdata.data[$scope.EWdata.data.length - 1].RecvDate)/1000/60;
+            return moment.duration($scope.EWdata.data[0].RecvDate - $scope.EWdata.data[$scope.EWdata.data.length - 1].RecvDate).humanize();
         } else {
-            return 0;
+            return "0";
         }
     };
 
@@ -246,7 +246,7 @@ unicom.controller('UnicomController', function UnicomController($scope,$interval
             .attr("class", "dot")
             .attr("cx", function (d) { return x(d.RecvDate); })
             .attr("cy", function (d) { return y(d.Value); })
-            .attr("r", 0.8);
+            .attr("r", 0.9);
 
         dots.attr("cx", function (d) { return x(d.RecvDate); })
             .attr("cy", function (d) { return y(d.Value); });

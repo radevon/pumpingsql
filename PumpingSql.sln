@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataRepository", "DataRepos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumpVisy", "PumpVisy\PumpVisy.csproj", "{07CA8458-21E3-42DF-972B-22A0F1D59FAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumpingModule", "PumpingModule\PumpingModule.csproj", "{78C417A6-50FA-4124-B54B-15CACA490211}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{07CA8458-21E3-42DF-972B-22A0F1D59FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07CA8458-21E3-42DF-972B-22A0F1D59FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07CA8458-21E3-42DF-972B-22A0F1D59FAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78C417A6-50FA-4124-B54B-15CACA490211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78C417A6-50FA-4124-B54B-15CACA490211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78C417A6-50FA-4124-B54B-15CACA490211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78C417A6-50FA-4124-B54B-15CACA490211}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

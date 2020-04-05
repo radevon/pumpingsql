@@ -7,3 +7,11 @@ E:\dev\vs\PumpingSql\DataRepository\bin\Debug\Dapper.xml
 E:\dev\vs\PumpingSql\DataRepository\obj\Debug\DataRepository.csprojResolveAssemblyReference.cache
 E:\dev\vs\PumpingSql\DataRepository\obj\Debug\DataRepository.dll
 E:\dev\vs\PumpingSql\DataRepository\obj\Debug\DataRepository.pdb
+D:\code\.NET\Pumpingsql\DataRepository\bin\Debug\DataRepository.dll
+D:\code\.NET\Pumpingsql\DataRepository\bin\Debug\DataRepository.pdb
+D:\code\.NET\Pumpingsql\DataRepository\bin\Debug\DapperBase.dll
+D:\code\.NET\Pumpingsql\DataRepository\bin\Debug\Dapper.dll
+D:\code\.NET\Pumpingsql\DataRepository\bin\Debug\DapperBase.pdb
+D:\code\.NET\Pumpingsql\DataRepository\bin\Debug\Dapper.xml
+D:\code\.NET\Pumpingsql\DataRepository\obj\Debug\DataRepository.dll
+D:\code\.NET\Pumpingsql\DataRepository\obj\Debug\DataRepository.pdb

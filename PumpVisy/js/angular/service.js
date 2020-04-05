@@ -2,7 +2,7 @@ app.service("dataService",function dataService($http) {
 
     this.getmarkers = function() {
         return $http({
-            url: '././device/allmarkers',
+            url: baseurl + 'device/allmarkers',
             method: 'GET',
             dataType: 'json',
             cache: false
@@ -11,7 +11,7 @@ app.service("dataService",function dataService($http) {
 
     this.insertmarker = function(marker) {
         return $http({
-            url: '././device/InsertNewMarker',
+            url: baseurl + 'device/InsertNewMarker',
             method: 'POST',
             dataType: 'json',
             cache: false,
@@ -21,7 +21,7 @@ app.service("dataService",function dataService($http) {
 
     this.getmarkerbyid = function(ObjectId) {
         return $http({
-            url: '././device/GetMarker',
+            url: baseurl + 'device/GetMarker',
             method: 'GET',
             dataType: 'json',
             cache: false,
@@ -31,7 +31,7 @@ app.service("dataService",function dataService($http) {
 
     this.updatemarker = function(marker) {
         return $http({
-            url: '././device/UpdateMarker',
+            url: baseurl + 'device/UpdateMarker',
             method: 'POST',
             dataType: 'json',
             cache: false,
@@ -41,7 +41,7 @@ app.service("dataService",function dataService($http) {
 
     this.deletemarker = function(id) {
         return $http({
-            url: '././device/DeleteMarker',
+            url: baseurl + 'device/DeleteMarker',
             method: 'POST',
             dataType: 'json',
             cache: false,

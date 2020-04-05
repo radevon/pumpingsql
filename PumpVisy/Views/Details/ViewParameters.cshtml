@@ -12,6 +12,7 @@
 }
 
 <script src='@Url.Content("~/js/moment-with-locales.min.js")'></script>
+<script type="text/javascript">moment.locale("ru")</script>
 
 
 
@@ -403,7 +404,7 @@
                 </tbody>
                 <tfoot style="font-weight:bold">
                     <tr>
-                        <td>{{intervalData().toFixed(2)}} мин</td>
+                        <td>{{intervalData()}}</td>
                         <td style="text-align: right">всего:</td>
                         <td>{{EnergyRate().toFixed(3)}}</td>
                         <td style="text-align: right">всего:</td>
