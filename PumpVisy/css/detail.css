@@ -145,6 +145,10 @@
     background-color: #f0e68c;
 }
 
+table.last-data-table tr th, table.last-data-table tr td{
+    padding:2px;
+}
+
     @media (max-width:640px) {
     .panelparam .huge {
         

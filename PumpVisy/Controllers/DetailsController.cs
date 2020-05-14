@@ -60,7 +60,7 @@ namespace PumpVisy.Controllers
             {
                 if (!Double.TryParse(ConfigurationManager.AppSettings["dataInterval"], NumberStyles.Any, CultureInfo.GetCultureInfo("en-US").NumberFormat, out interval))
                 {
-                    interval = 8; // по умолчанию 8 часов
+                    interval = 4; // по умолчанию 4 часов
                 }                
                 start = end.AddHours(-interval);
                 jsonData.StartDate = start;

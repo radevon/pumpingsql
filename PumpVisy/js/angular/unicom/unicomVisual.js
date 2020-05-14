@@ -206,7 +206,7 @@ unicom.controller('UnicomController', function UnicomController($scope,$interval
         $scope.loadData(identity);
         
        
-        $interval(function () { $scope.loadData(identity); }, 60000);
+        $interval(function () { $scope.loadData(identity); }, 30000);
               
     };
 
