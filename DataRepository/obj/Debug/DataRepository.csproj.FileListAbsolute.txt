@@ -15,3 +15,11 @@ D:\code\.NET\Pumpingsql\DataRepository\bin\Debug\DapperBase.pdb
 D:\code\.NET\Pumpingsql\DataRepository\bin\Debug\Dapper.xml
 D:\code\.NET\Pumpingsql\DataRepository\obj\Debug\DataRepository.dll
 D:\code\.NET\Pumpingsql\DataRepository\obj\Debug\DataRepository.pdb
+E:\dev\vs\optima\pumpingsql\DataRepository\bin\Debug\DataRepository.dll
+E:\dev\vs\optima\pumpingsql\DataRepository\bin\Debug\DataRepository.pdb
+E:\dev\vs\optima\pumpingsql\DataRepository\bin\Debug\Dapper.dll
+E:\dev\vs\optima\pumpingsql\DataRepository\bin\Debug\DapperBase.pdb
+E:\dev\vs\optima\pumpingsql\DataRepository\bin\Debug\Dapper.xml
+E:\dev\vs\optima\pumpingsql\DataRepository\obj\Debug\DataRepository.csprojResolveAssemblyReference.cache
+E:\dev\vs\optima\pumpingsql\DataRepository\obj\Debug\DataRepository.dll
+E:\dev\vs\optima\pumpingsql\DataRepository\obj\Debug\DataRepository.pdb
