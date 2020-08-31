@@ -243,6 +243,7 @@
     <Content Include="js\unobtrusive_ajax\jquery.unobtrusive-ajax.js" />
     <Content Include="js\unobtrusive_ajax\jquery.unobtrusive-ajax.min.js" />
     <Content Include="js\util\ModalHelper.js" />
+    <Content Include="js\websocket\wsaction.js" />
     <Content Include="js\wow\wow.min.js" />
     <Content Include="js\xlsx.core.min.js" />
     <Content Include="Web.config">
