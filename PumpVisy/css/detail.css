@@ -149,6 +149,14 @@ table.last-data-table tr th, table.last-data-table tr td{
     padding:2px;
 }
 
+#socet_msg {
+    line-height:1.2em;
+    height:70px;
+    width:100%;
+    font-size:11px;
+    color:#8a8a8a;
+}
+
     @media (max-width:640px) {
     .panelparam .huge {
         

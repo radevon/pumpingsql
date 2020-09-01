@@ -19,6 +19,9 @@
 @Html.Partial("topmenu")
 
 
+<script type="text/javascript">
+    var stationNumber = '@Model.Identity';
+</script>
 
 <div class="container" style="margin: 65px auto 30px" data-ng-app="unicom" data-ng-controller="UnicomController" data-ng-init="init('@Model.Identity')">
     
@@ -40,18 +43,16 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-9 col-sm-6 col-xs-3">
-                                    <span id="socet_msg">
-                                        
-                                    </span>                                 
+                                    <textarea id="socet_msg" autocomplete="off">- инициализация соединения...</textarea>                                 
                                 </div>
                                 <div class="col-md-1 col-sm-2 col-xs-3">
-                                    <button id="btn-start" class="btn btn-success" title="Запустить насос"><span class="glyphicon glyphicon-play-circle"/><br/>Старт</button>
+                                    <button id="btn-start" data-station="@Model.Identity" class="btn btn-success" title="Запустить насос" disabled="disabled"><span class="glyphicon glyphicon-play-circle"/><br/>Старт</button>
                                 </div>
                                 <div class="col-md-1 col-sm-2 col-xs-3">
-                                    <button id="btn-stop" class="btn btn-danger" title="Остановить насос"><span class="glyphicon glyphicon-off"/><br />Cтоп</button>
+                                    <button id="btn-stop" data-station="@Model.Identity" class="btn btn-danger" title="Остановить насос" disabled="disabled"><span class="glyphicon glyphicon-off" /><br />Cтоп</button>
                                 </div> 
                                 <div class="col-md-1 col-sm-2 col-xs-3">
-                                    <button id="btn-reset" class="btn btn-warning" title="Сбросить ошибку по аварии"><span class="glyphicon glyphicon-retweet" /><br />Сброс</button>
+                                    <button id="btn-reset" data-station="@Model.Identity" class="btn btn-warning" title="Сбросить ошибку по аварии" disabled="disabled"><span class="glyphicon glyphicon-retweet" /><br />Сброс</button>
 
                                 </div> 
                             </div>
